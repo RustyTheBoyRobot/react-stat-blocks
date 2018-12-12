@@ -1,0 +1,37 @@
+/* Specific, structural parts of the doc */
+#pageTitle {
+  text-align: center;
+}
+
+.fullStatBlock {
+  background-color: #FDF1DC;
+}
+
+.nameSection > h1.monsterName {
+  font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+  color: #7A200D;
+  font-weight: 700;
+  margin: 0px;
+  font-size: 23px;
+  letter-spacing: 1px;
+  font-variant: small-caps;
+}
+
+.nameSection > .overviewDetails {
+  font-style: italic;
+}
+
+hr.sectionBound {
+  border-width: 5px;
+  border-color: #400;
+}
+
+/* Broad classes for multiple components */
+.hangingIndent {
+  padding-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+input.inlineTextEdit[type=text] {
+  background-color: transparent;
+}
