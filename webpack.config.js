@@ -20,10 +20,7 @@ module.exports = {
       // CSS bundling
       {
         test: /\.css$/,
-        use: [
-          {loader: 'style-loader'},
-          {loader: 'css-loader'}
-        ]
+        use: ['style-loader', 'css-loader']
       },
       // JS and JSX bundling
       {
