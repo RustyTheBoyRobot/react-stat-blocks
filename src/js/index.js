@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TempJunk from './components/TempJunk.jsx';
+
+import StatBlockLibrary from './components/StatBlockLibrary.jsx';
 
 // Bootstrap
 ReactDOM.render(
-  <TempJunk/>,
+  <StatBlockLibrary/>,
   document.getElementById("root")
 );
