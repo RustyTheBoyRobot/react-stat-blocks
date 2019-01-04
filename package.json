@@ -1,0 +1,26 @@
+{
+  "name": "statsBlock-react",
+  "version": "1.0.0",
+  "description": "A simple D&D 5e stat block creator/editor",
+  "main": "main.js",
+  "author": "Brad Stapleton <brad.stapleton@hudl.com>",
+  "license": "Everything here is MINE MINE MINE",
+  "scripts": {
+    "start": "webpack-dev-server --mode development"
+  },
+  "dependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "path": "^0.12.7",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.0",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5"
+  }
+}
