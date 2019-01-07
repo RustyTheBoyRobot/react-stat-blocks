@@ -43,6 +43,16 @@
   background-color: #ffe3b2;
 }
 
+/* Base stats section */
+.statsSection .eachStatContainer {
+  display: flex;
+}
+
+.statsSection .eachStatContainer .indivStat {
+  flex-grow: 1;
+  text-align: center;
+}
+
 /* Broad classes for multiple components */
 h2 {
   border-bottom: 1px solid #7A200D;

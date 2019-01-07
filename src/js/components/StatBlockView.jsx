@@ -2,6 +2,7 @@ import React from 'react';
 
 import {EXAMPLE_MONSTER} from '../Monster';
 
+import BaseStatsSection from './BaseStatsSection.jsx';
 import DetailsSection from './DetailsSection.jsx';
 import MajorDivider from './MajorDivider.jsx';
 import NameSection from './NameSection.jsx';
@@ -21,9 +22,7 @@ export default class StatBlockView extends React.Component {
         <StandardAttributesSection stdAttributes={EXAMPLE_MONSTER.stdAttributes} />
         <MajorDivider />
 
-        <section className="statsSection">
-          Str 0
-        </section>
+        <BaseStatsSection/>
         <MajorDivider />
 
         <section className="specialAttributesSection">
