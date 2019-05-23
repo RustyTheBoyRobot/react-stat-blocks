@@ -17,8 +17,8 @@ export default class SingleStat extends React.Component {
   render() {
     return (
       <div className='indivStat'>
-        <div className='statName'>{this.props.name}</div>
-        <div>
+        <div className='statName majorTerm'>{this.props.name}</div>
+        <div className='highlightedText'>
           <span className='statValue'>{this.state.statValue}</span>
 
           (

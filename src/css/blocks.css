@@ -6,7 +6,10 @@
 .fullStatBlock {
   background-color: #FDF1DC;
 
-  width: 450px;
+  width: 420px;
+
+  box-shadow:  0 20px  15px #888888;
+  padding: 10px;
 }
 
 /* Name section */
@@ -53,6 +56,11 @@
   text-align: center;
 }
 
+.actionsSection h2 {
+  font-variant: small-caps;
+  color: #7A200D;
+}
+
 /* Broad classes for multiple components */
 h2 {
   border-bottom: 1px solid #7A200D;
@@ -61,19 +69,22 @@ h2 {
 .creatureProperty {
   padding-left: 1.5em;
   text-indent: -1.5em;
-  font-family: sans-serif;
-  font-size: 15px;
-  color: #7A200D;
 }
 
 .creatureProperty .propName {
-  font-weight: bold;
   margin-right: 0.2em;
 }
 
 .majorTerm {
   color: #7A200D;
+  font-size: 15px;
   font-weight: bold;
+  font-family: sans-serif;
+}
+
+.highlightedText {
+  font-size: 15px;
+  color: #7A200D;
   font-family: sans-serif;
 }
 
