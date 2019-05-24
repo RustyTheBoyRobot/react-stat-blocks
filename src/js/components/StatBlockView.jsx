@@ -6,6 +6,7 @@ import BaseStatsSection from './sections/BaseStatsSection.jsx';
 import DetailsSection from './sections/DetailsSection.jsx';
 import MajorDivider from './sections/MajorDivider.jsx';
 import NameSection from './sections/NameSection.jsx';
+import SpecialAttributesSection from './sections/SpecialAttributesSection.jsx';
 import StandardAttributesSection from './sections/StandardAttributesSection.jsx';
 
 export default class StatBlockView extends React.Component {
@@ -25,13 +26,10 @@ export default class StatBlockView extends React.Component {
         <BaseStatsSection stats={EXAMPLE_MONSTER.stats}/>
         <MajorDivider />
 
-        <section className="specialAttributesSection">
-          Armor
-        </section>
+        <SpecialAttributesSection attributes={EXAMPLE_MONSTER.specialAttributes} />
         <MajorDivider />
 
-        <DetailsSection>
-          <p>This is completely customized</p>
+        <DetailsSection abilities={EXAMPLE_MONSTER.abilities} actions={EXAMPLE_MONSTER.actions}>
         </DetailsSection>
 
         <MajorDivider />

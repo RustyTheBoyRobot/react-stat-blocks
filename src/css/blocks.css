@@ -64,6 +64,8 @@
 /* Broad classes for multiple components */
 h2 {
   border-bottom: 1px solid #7A200D;
+  margin-top: 0.7em;
+  margin-bottom: 0.3em;
 }
 
 .creatureProperty {
@@ -73,6 +75,10 @@ h2 {
 
 .creatureProperty .propName {
   margin-right: 0.2em;
+}
+
+.creatureAbility {
+  margin-bottom: 0.5em;
 }
 
 .majorTerm {
@@ -85,6 +91,19 @@ h2 {
 .highlightedText {
   font-size: 15px;
   color: #7A200D;
+  font-family: sans-serif;
+}
+
+.abilityName {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-style: italic;
+  margin-right: 0.4em;
+}
+
+.abilityDescription {
+  font-size: 15px;
   font-family: sans-serif;
 }
 
