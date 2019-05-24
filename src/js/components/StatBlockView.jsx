@@ -22,7 +22,7 @@ export default class StatBlockView extends React.Component {
         <StandardAttributesSection stdAttributes={EXAMPLE_MONSTER.stdAttributes} />
         <MajorDivider />
 
-        <BaseStatsSection/>
+        <BaseStatsSection stats={EXAMPLE_MONSTER.stats}/>
         <MajorDivider />
 
         <section className="specialAttributesSection">

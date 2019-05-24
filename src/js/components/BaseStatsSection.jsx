@@ -3,16 +3,20 @@ import React from 'react';
 import SingleStat from './SingleStat.jsx';
 
 export default class BaseStatsSection extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <section className="statsSection">
         <div className='eachStatContainer'>
-          <SingleStat name='STR' value='14' />
-          <SingleStat name='DEX' value='11' />
-          <SingleStat name='CON' value='13' />
-          <SingleStat name='WIS' value='1' />
-          <SingleStat name='INT' value='3' />
-          <SingleStat name='CHA' value='1' />
+          <SingleStat name='STR' value={this.props.stats.str} />
+          <SingleStat name='DEX' value={this.props.stats.dex} />
+          <SingleStat name='CON' value={this.props.stats.con} />
+          <SingleStat name='WIS' value={this.props.stats.wis} />
+          <SingleStat name='INT' value={this.props.stats.int} />
+          <SingleStat name='CHA' value={this.props.stats.cha} />
         </div>
       </section>
     );

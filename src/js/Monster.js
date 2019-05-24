@@ -17,12 +17,12 @@ export const EXAMPLE_MONSTER = {
     ]
   },
   stats: {
-    str: 0,
-    dex: 0,
-    con: 0,
-    int: 0,
-    wis: 0,
-    cha: 0
+    str: 14,
+    dex: 11,
+    con: 13,
+    int: 3,
+    wis: 1,
+    cha: 1
   }
 
 };
