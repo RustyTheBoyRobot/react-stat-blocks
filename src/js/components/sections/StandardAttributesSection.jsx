@@ -1,5 +1,5 @@
 import React from 'react';
-import CreatureProperty from './CreatureProperty.jsx'
+import CreatureProperty from '../CreatureProperty.jsx'
 
 export default class StandardAttributesSection extends React.Component {
   constructor(props) {

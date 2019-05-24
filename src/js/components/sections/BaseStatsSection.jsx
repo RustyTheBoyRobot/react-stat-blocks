@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SingleStat from './SingleStat.jsx';
+import SingleStat from '../SingleStat.jsx';
 
 export default class BaseStatsSection extends React.Component {
   constructor(props) {

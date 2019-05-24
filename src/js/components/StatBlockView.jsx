@@ -2,11 +2,11 @@ import React from 'react';
 
 import {EXAMPLE_MONSTER} from '../Monster';
 
-import BaseStatsSection from './BaseStatsSection.jsx';
-import DetailsSection from './DetailsSection.jsx';
-import MajorDivider from './MajorDivider.jsx';
-import NameSection from './NameSection.jsx';
-import StandardAttributesSection from './StandardAttributesSection.jsx';
+import BaseStatsSection from './sections/BaseStatsSection.jsx';
+import DetailsSection from './sections/DetailsSection.jsx';
+import MajorDivider from './sections/MajorDivider.jsx';
+import NameSection from './sections/NameSection.jsx';
+import StandardAttributesSection from './sections/StandardAttributesSection.jsx';
 
 export default class StatBlockView extends React.Component {
   edit() {

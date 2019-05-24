@@ -1,5 +1,5 @@
 import React from 'react';
-import {CATEGORY_CHOICES} from '../CategoryChoiceConstants';
+import {CATEGORY_CHOICES} from '../../CategoryChoiceConstants';
 
 export default class NameSection extends React.Component {
   constructor(props) {
