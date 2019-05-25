@@ -10,8 +10,8 @@ export default class SpecialAttributesSection extends React.Component {
     return (
       <section className="specialAttributesSection">
         {
-          this.props.attributes.map(each =>
-            <CreatureProperty name={each.name} details={each.description} />
+          this.props.attributes.map((each, i) =>
+            <CreatureProperty key={i} name={each.name} details={each.description} />
           )
         }
       </section>

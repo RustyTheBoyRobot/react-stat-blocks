@@ -12,15 +12,21 @@ export default class NameSection extends React.Component {
       alignment: 'neutral',
     };
 
+    let nameData = this.props.nameData ? this.props.nameData : defaultNameData;
+
     this.state = {
       editing: false,
-      nameData: this.props.nameData ? this.props.nameData : defaultNameData
+      name: nameData.name,
+      size: nameData.size,
+      type: nameData.type,
+      alignment: nameData.alignment
     };
 
     // Fix 'this' handling
     this.edit = this.edit.bind(this);
     this.save = this.save.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
+    this.selectAlignment = this.selectAlignment.bind(this);
   }
 
   edit() {
@@ -32,11 +38,9 @@ export default class NameSection extends React.Component {
   save() {
     this.setState({
       editing: false,
-      nameData: {
-        name: this.refs.nameInput.value,
-        size: this.refs.sizeInput.value,
-        type: this.refs.typeInput.value
-      }
+      name: this.refs.nameInput.value,
+      size: this.refs.sizeInput.value,
+      type: this.refs.typeInput.value
     });
   }
 
@@ -46,11 +50,19 @@ export default class NameSection extends React.Component {
     });
   }
 
+  selectAlignment(event) {
+    const newAlignment = event.target.getAttribute("data-alignment");
+    console.log("New alignment: " + newAlignment);
+    this.setState({
+      alignment: newAlignment
+    });
+  }
+
   renderDisplay() {
-    const details = this.state.nameData.size + " " + this.state.nameData.type + ", " + this.state.nameData.alignment;
+    const details = this.state.size + " " + this.state.type + ", " + this.state.alignment;
     return (
       <section className="nameSection">
-        <h1 className='monsterName'>{this.state.nameData.name}</h1>
+        <h1 className='monsterName'>{this.state.name}</h1>
         <div className='overviewDetails'>{details}</div>
         <button onClick={this.edit}>Edit</button>
       </section>
@@ -58,24 +70,24 @@ export default class NameSection extends React.Component {
   }
 
   renderEdit() {
-    let sizeOptions = CATEGORY_CHOICES.sizes.map(function(eachSize, i) {
-      return (<option key={i}>{eachSize}</option>);
-    });
-    let typeOptions = CATEGORY_CHOICES.types.map(function(eachSize, i) {
-      return (<option key={i}>{eachSize}</option>);
-    });
+    let sizeOptions = CATEGORY_CHOICES.sizes.map((eachSize, i) =>
+      <option key={i}>{eachSize}</option>
+    );
+    let typeOptions = CATEGORY_CHOICES.types.map((eachSize, i) =>
+      <option key={i}>{eachSize}</option>
+    );
 
     return (
       <section className="nameSection">
         <input className='monsterName inlineTextEdit' type='text' placeholder='Monster Name'
-            defaultValue={this.state.nameData.name} ref='nameInput'/>
+            defaultValue={this.state.name} ref='nameInput'/>
         <div>
           <table>
           <tbody>
             <tr>
               <td>Size:</td>
               <td>
-                <select className='inlineTextEdit' defaultValue={this.state.nameData.size} ref='sizeInput'>
+                <select className='inlineTextEdit' defaultValue={this.state.size} ref='sizeInput'>
                   {sizeOptions}
                 </select>
               </td>
@@ -83,7 +95,7 @@ export default class NameSection extends React.Component {
             <tr>
               <td>Type:</td>
               <td>
-                <select className='inlineTextEdit' defaultValue={this.state.nameData.type} ref='typeInput'>
+                <select className='inlineTextEdit' defaultValue={this.state.type} ref='typeInput'>
                   {typeOptions}
                 </select>
               </td>
@@ -94,24 +106,24 @@ export default class NameSection extends React.Component {
                 <table className='alignmentTable majorTerm'>
                   <tbody>
                     <tr>
-                      <td>LE</td>
-                      <td>LN</td>
-                      <td>LG</td>
+                      <td onClick={this.selectAlignment} data-alignment="lawful evil">LE</td>
+                      <td onClick={this.selectAlignment} data-alignment="lawful neutral">LN</td>
+                      <td onClick={this.selectAlignment} data-alignment="lawful good">LG</td>
                     </tr>
                     <tr>
-                      <td>NE</td>
-                      <td>TN</td>
-                      <td>NG</td>
+                      <td onClick={this.selectAlignment} data-alignment="neutral evil">NE</td>
+                      <td onClick={this.selectAlignment} data-alignment="neutral">TN</td>
+                      <td onClick={this.selectAlignment} data-alignment="neutral good">NG</td>
                     </tr>
                     <tr>
-                      <td>CE</td>
-                      <td>CN</td>
-                      <td>CG</td>
+                      <td onClick={this.selectAlignment} data-alignment="chaotic evil">CE</td>
+                      <td onClick={this.selectAlignment} data-alignment="chaotic neutral">CN</td>
+                      <td onClick={this.selectAlignment} data-alignment="chaotic good">CG</td>
                     </tr>
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colSpan='3'>Unaligned</td>
+                      <td colSpan='3' onClick={this.selectAlignment} data-alignment="unaligned">Unaligned</td>
                     </tr>
                   </tfoot>
                 </table>
