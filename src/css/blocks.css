@@ -42,8 +42,13 @@
   text-align: center;
 }
 
-.nameSection .alignmentTable td:hover {
+.nameSection .alignmentTable td:not(.selected):hover {
   background-color: #ffe3b2;
+}
+
+.nameSection .alignmentTable td.selected {
+  background-color: #7A200D;
+  color: #FDF1DC;
 }
 
 /* Base stats section */

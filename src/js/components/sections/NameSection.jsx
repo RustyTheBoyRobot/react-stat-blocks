@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {CATEGORY_CHOICES} from '../../CategoryChoiceConstants';
+import AlignmentOption from '../AlignmentOption.jsx';
 
 export default class NameSection extends React.Component {
   constructor(props) {
@@ -52,7 +54,6 @@ export default class NameSection extends React.Component {
 
   selectAlignment(event) {
     const newAlignment = event.target.getAttribute("data-alignment");
-    console.log("New alignment: " + newAlignment);
     this.setState({
       alignment: newAlignment
     });
@@ -106,26 +107,64 @@ export default class NameSection extends React.Component {
                 <table className='alignmentTable majorTerm'>
                   <tbody>
                     <tr>
-                      <td onClick={this.selectAlignment} data-alignment="lawful evil">LE</td>
-                      <td onClick={this.selectAlignment} data-alignment="lawful neutral">LN</td>
-                      <td onClick={this.selectAlignment} data-alignment="lawful good">LG</td>
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[0]}
+                        currentAlignment={this.state.alignment}
+                      />
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[1]}
+                        currentAlignment={this.state.alignment}
+                      />
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[2]}
+                        currentAlignment={this.state.alignment}
+                      />
                     </tr>
                     <tr>
-                      <td onClick={this.selectAlignment} data-alignment="neutral evil">NE</td>
-                      <td onClick={this.selectAlignment} data-alignment="neutral">TN</td>
-                      <td onClick={this.selectAlignment} data-alignment="neutral good">NG</td>
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[3]}
+                        currentAlignment={this.state.alignment}
+                      />
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[4]}
+                        currentAlignment={this.state.alignment}
+                      />
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[5]}
+                        currentAlignment={this.state.alignment}
+                      />
                     </tr>
                     <tr>
-                      <td onClick={this.selectAlignment} data-alignment="chaotic evil">CE</td>
-                      <td onClick={this.selectAlignment} data-alignment="chaotic neutral">CN</td>
-                      <td onClick={this.selectAlignment} data-alignment="chaotic good">CG</td>
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[6]}
+                        currentAlignment={this.state.alignment}
+                      />
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[7]}
+                        currentAlignment={this.state.alignment}
+                      />
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[8]}
+                        currentAlignment={this.state.alignment}
+                      />
+                    </tr>
+                    <tr>
+                      <AlignmentOption
+                        selectAlignment={this.selectAlignment}
+                        alignment={CATEGORY_CHOICES.alignments[9]}
+                        currentAlignment={this.state.alignment}
+                      />
                     </tr>
                   </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colSpan='3' onClick={this.selectAlignment} data-alignment="unaligned">Unaligned</td>
-                    </tr>
-                  </tfoot>
                 </table>
               </td>
             </tr>

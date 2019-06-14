@@ -26,5 +26,17 @@ export const CATEGORY_CHOICES = {
     'ooze',
     'plant',
     'undead'
+  ],
+  alignments: [
+    'lawful evil',
+    'lawful neutral',
+    'lawful good',
+    'neutral evil',
+    'true neutral',
+    'neutral good',
+    'chaotic evil',
+    'chaotic neutral',
+    'chaotic good',
+    'unaligned',
   ]
 };
