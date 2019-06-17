@@ -63,6 +63,7 @@
 
 .actionsSection h2 {
   font-variant: small-caps;
+  font-family: sans-serif;
   color: #7A200D;
 }
 
@@ -71,6 +72,13 @@ h2 {
   border-bottom: 1px solid #7A200D;
   margin-top: 0.7em;
   margin-bottom: 0.3em;
+}
+
+section.editable {
+  cursor: pointer;
+}
+section.editable:hover {
+  background-color: #ffe3b2;
 }
 
 .creatureProperty {

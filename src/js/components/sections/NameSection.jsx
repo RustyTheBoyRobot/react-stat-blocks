@@ -7,42 +7,28 @@ export default class NameSection extends React.Component {
   constructor(props) {
     super(props);
 
-    this.defaultNameData = {
-      name: "(The Nameless Thing)",
-      size: CATEGORY_CHOICES.sizes[5],
-      type: CATEGORY_CHOICES.types[9],
-      alignment: 'neutral',
-    };
-
-    let nameData = this.props.nameData ? this.props.nameData : defaultNameData;
-
     this.state = {
       editing: false,
-      name: nameData.name,
-      size: nameData.size,
-      type: nameData.type,
-      alignment: nameData.alignment
+      alignment: this.props.nameData.alignment
     };
 
     // Fix 'this' handling
-    this.edit = this.edit.bind(this);
     this.save = this.save.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
     this.selectAlignment = this.selectAlignment.bind(this);
-  }
-
-  edit() {
-    this.setState({
-      editing: true
-    });
+    this.handleEditClick = this.handleEditClick.bind(this);
   }
 
   save() {
     this.setState({
-      editing: false,
+      editing: false
+    });
+
+    this.props.update({
       name: this.refs.nameInput.value,
       size: this.refs.sizeInput.value,
-      type: this.refs.typeInput.value
+      type: this.refs.typeInput.value,
+      alignment: this.state.alignment
     });
   }
 
@@ -59,13 +45,18 @@ export default class NameSection extends React.Component {
     });
   }
 
+  handleEditClick() {
+    this.setState({
+      editing: true
+    });
+  }
+
   renderDisplay() {
-    const details = this.state.size + " " + this.state.type + ", " + this.state.alignment;
+    const details = this.props.nameData.size + " " + this.props.nameData.type + ", " + this.props.nameData.alignment;
     return (
-      <section className="nameSection">
-        <h1 className='monsterName'>{this.state.name}</h1>
+      <section className="nameSection editable" onClick={this.handleEditClick}>
+        <h1 className='monsterName'>{this.props.nameData.name}</h1>
         <div className='overviewDetails'>{details}</div>
-        <button onClick={this.edit}>Edit</button>
       </section>
     );
   }
@@ -81,14 +72,14 @@ export default class NameSection extends React.Component {
     return (
       <section className="nameSection">
         <input className='monsterName inlineTextEdit' type='text' placeholder='Monster Name'
-            defaultValue={this.state.name} ref='nameInput'/>
+            defaultValue={this.props.nameData.name} ref='nameInput'/>
         <div>
           <table>
           <tbody>
             <tr>
               <td>Size:</td>
               <td>
-                <select className='inlineTextEdit' defaultValue={this.state.size} ref='sizeInput'>
+                <select className='inlineTextEdit' defaultValue={this.props.nameData.size} ref='sizeInput'>
                   {sizeOptions}
                 </select>
               </td>
@@ -96,7 +87,7 @@ export default class NameSection extends React.Component {
             <tr>
               <td>Type:</td>
               <td>
-                <select className='inlineTextEdit' defaultValue={this.state.type} ref='typeInput'>
+                <select className='inlineTextEdit' defaultValue={this.props.nameData.type} ref='typeInput'>
                   {typeOptions}
                 </select>
               </td>

@@ -10,33 +10,59 @@ import SpecialAttributesSection from './sections/SpecialAttributesSection.jsx';
 import StandardAttributesSection from './sections/StandardAttributesSection.jsx';
 
 export default class StatBlockView extends React.Component {
-  edit() {
-    console.debug("You clicked Edit. Hopefully someone implements that at some point.");
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...EXAMPLE_MONSTER,
+    };
+
+    // Fix 'this' handling
+    this.updateData = this.updateData.bind(this);
+    this.updateNameData = this.updateNameData.bind(this);
+  }
+
+  updateData(section, newData) {
+    this.setState(prevState => {
+      const mergedData = {
+        ...prevState[section],
+        ...newData
+      };
+
+      return {
+        [section]: mergedData
+      };
+    });
+  }
+
+  updateNameData(newNameData) {
+    this.updateData('nameData', newNameData);
+  }
+
+  updateStandardAttributes(newStdAttributes) {
+    this.updateData('stdAttributes', newStdAttributes);
+  }
+
+  updateStats(newStats) {
+    this.updateData('stats', newStats);
   }
 
   render() {
     return (
       <div className='fullStatBlock'>
-        <NameSection nameData={EXAMPLE_MONSTER.nameData} />
+        <NameSection nameData={this.state.nameData} update={this.updateNameData} />
         <MajorDivider />
 
-        <StandardAttributesSection stdAttributes={EXAMPLE_MONSTER.stdAttributes} />
+        <StandardAttributesSection stdAttributes={this.state.stdAttributes} />
         <MajorDivider />
 
-        <BaseStatsSection stats={EXAMPLE_MONSTER.stats}/>
+        <BaseStatsSection stats={this.state.stats}/>
         <MajorDivider />
 
-        <SpecialAttributesSection attributes={EXAMPLE_MONSTER.specialAttributes} />
+        <SpecialAttributesSection attributes={this.state.specialAttributes} />
         <MajorDivider />
 
-        <DetailsSection abilities={EXAMPLE_MONSTER.abilities} actions={EXAMPLE_MONSTER.actions}>
+        <DetailsSection abilities={this.state.abilities} actions={this.state.actions}>
         </DetailsSection>
-
-        <MajorDivider />
-        <section className="buttonsSection">
-          <button onClick={this.edit}>Edit</button>
-          <button>Save</button>
-        </section>
       </div>
     );
   }
