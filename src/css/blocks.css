@@ -51,6 +51,23 @@
   color: #FDF1DC;
 }
 
+/* Standard Attributes section */
+.smallValueInput {
+  margin-left: 10px;
+  margin-right: 10px;
+  max-width: 35px;
+  text-align: right;
+}
+
+.speedsList {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  list-style:none;
+}
+.speedsList li {
+  margin-bottom: 3px;
+}
+
 /* Base stats section */
 .statsSection .eachStatContainer {
   display: flex;
@@ -64,6 +81,7 @@
 .actionsSection h2 {
   font-variant: small-caps;
   font-family: sans-serif;
+  font-weight: lighter;
   color: #7A200D;
 }
 
@@ -81,12 +99,25 @@ section.editable:hover {
   background-color: #ffe3b2;
 }
 
-.creatureProperty {
+.sectionActions {
+  margin-top: 10px;
+  text-align: right;
+}
+
+button.finalize {
+
+}
+
+button.revert {
+
+}
+
+div.creatureProperty {
   padding-left: 1.5em;
   text-indent: -1.5em;
 }
 
-.creatureProperty .propName {
+div.creatureProperty .propName {
   margin-right: 0.2em;
 }
 
@@ -120,8 +151,9 @@ section.editable:hover {
   font-family: sans-serif;
 }
 
-input.inlineTextEdit[type=text], select.inlineTextEdit {
+input[type=text], select {
   background-color: transparent;
+  border: 1px dashed #d2a659;
 }
 
 svg.majorDivider {

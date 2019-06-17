@@ -62,7 +62,7 @@ export const EXAMPLE_MONSTER = {
       description: 'The armor makes two melee attacks.'
     },
     {
-      name: 'Slam', 
+      name: 'Slam',
       description: 'Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) bludgeoning damage.'
     }
   ]

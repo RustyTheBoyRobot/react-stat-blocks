@@ -34,7 +34,8 @@ export default class NameSection extends React.Component {
 
   cancelEdit() {
     this.setState({
-      editing: false
+      editing: false,
+      alignment: this.props.nameData.alignment
     });
   }
 
@@ -162,8 +163,10 @@ export default class NameSection extends React.Component {
           </tbody>
           </table>
         </div>
-        <button onClick={this.save}>Save</button>
-        <button onClick={this.cancelEdit}>Cancel</button>
+        <div className="sectionActions">
+          <button onClick={this.cancelEdit}>Cancel</button>
+          <button onClick={this.save}>Save</button>
+        </div>
       </section>
     );
   }
