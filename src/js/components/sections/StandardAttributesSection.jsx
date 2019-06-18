@@ -104,8 +104,8 @@ export default class StandardAttributesSection extends React.Component {
           {this.renderSpeedEdits()}
         </div>
         <div className="sectionActions">
-          <button onClick={this.handleCancelClicked}>Cancel</button>
-          <button onClick={this.handleSaveClicked}>Save</button>
+          <button className="revert" onClick={this.handleCancelClicked}>Cancel</button>
+          <button className="finalize" onClick={this.handleSaveClicked}>Save</button>
         </div>
       </section>
     );

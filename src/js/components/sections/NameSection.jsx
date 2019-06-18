@@ -164,8 +164,8 @@ export default class NameSection extends React.Component {
           </table>
         </div>
         <div className="sectionActions">
-          <button onClick={this.cancelEdit}>Cancel</button>
-          <button onClick={this.save}>Save</button>
+          <button className="revert" onClick={this.cancelEdit}>Cancel</button>
+          <button className="finalize" onClick={this.save}>Save</button>
         </div>
       </section>
     );

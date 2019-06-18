@@ -105,11 +105,24 @@ section.editable:hover {
 }
 
 button.finalize {
-
+  border: 1px solid #d2a659;
+  background: transparent;
+  font-weight: bold;
+  margin: 1px;
+}
+button.finalize:hover {
+  background-color: #d2a659;
+  color: #7A200D;
+  border: 1px solid #7A200D;
 }
 
 button.revert {
-
+  border: none;
+  background: transparent;
+  color: #d2a659;
+}
+button.revert:hover {
+  color: #7A200D;
 }
 
 div.creatureProperty {
