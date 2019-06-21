@@ -4,12 +4,13 @@
 }
 
 .fullStatBlock {
-  background-color: #FDF1DC;
-
-  width: 420px;
-
+  width: 440px;
   box-shadow:  0 20px  15px #888888;
+}
+
+.statBlockBody {
   padding: 10px;
+  background-color: #FDF1DC;
 }
 
 /* Name section */
@@ -172,4 +173,13 @@ input[type=text], select {
 svg.majorDivider {
   fill: #922610;
   stroke: #922610;
+}
+
+div.boundingBar {
+  border-top: 1px solid #922610;
+  border-bottom: 1px solid #922610;
+  background-color: orange;
+
+  height: 5px;
+  width: 100%;
 }

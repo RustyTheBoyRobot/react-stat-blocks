@@ -50,20 +50,24 @@ export default class StatBlockView extends React.Component {
   render() {
     return (
       <div className='fullStatBlock'>
-        <NameSection nameData={this.state.nameData} update={this.updateNameData} />
-        <MajorDivider />
+        <div className='boundingBar'/>
+        <div className="statBlockBody">
+          <NameSection nameData={this.state.nameData} update={this.updateNameData} />
+          <MajorDivider />
 
-        <StandardAttributesSection stdAttributes={this.state.stdAttributes} update={this.updateStandardAttributes} />
-        <MajorDivider />
+          <StandardAttributesSection stdAttributes={this.state.stdAttributes} update={this.updateStandardAttributes} />
+          <MajorDivider />
 
-        <BaseStatsSection stats={this.state.stats}/>
-        <MajorDivider />
+          <BaseStatsSection stats={this.state.stats}/>
+          <MajorDivider />
 
-        <SpecialAttributesSection attributes={this.state.specialAttributes} />
-        <MajorDivider />
+          <SpecialAttributesSection attributes={this.state.specialAttributes} />
+          <MajorDivider />
 
-        <DetailsSection abilities={this.state.abilities} actions={this.state.actions}>
-        </DetailsSection>
+          <DetailsSection abilities={this.state.abilities} actions={this.state.actions}>
+          </DetailsSection>
+        </div>
+        <div className='boundingBar'/>
       </div>
     );
   }
