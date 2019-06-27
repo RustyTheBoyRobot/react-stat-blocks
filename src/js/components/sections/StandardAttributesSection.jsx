@@ -7,12 +7,13 @@ export default class StandardAttributesSection extends React.Component {
 
     this.state = {
       ...this.props.stdAttributes,
-      editing: true,
+      editing: false,
     };
 
     // Fix 'this' handling
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleAddSpeedClick = this.handleAddSpeedClick.bind(this);
+    this.handleDeleteSpeedClick = this.handleDeleteSpeedClick.bind(this);
     this.handleCancelClicked = this.handleCancelClicked.bind(this);
     this.handleSaveClicked = this.handleSaveClicked.bind(this);
   }
@@ -27,6 +28,17 @@ export default class StandardAttributesSection extends React.Component {
         speeds: [
           ...prevState.speeds,
           {value: 10, description: 'not walking'}
+        ]
+      };
+    });
+  }
+
+  handleDeleteSpeedClick(speedIndex) {
+    this.setState(prevState => {
+      return {
+        speeds: [
+          ...prevState.speeds.slice(0, speedIndex),
+          ...prevState.speeds.slice(speedIndex + 1)
         ]
       };
     });
@@ -50,6 +62,36 @@ export default class StandardAttributesSection extends React.Component {
     });
   }
 
+  handleSpeedValueChanged(event, index) {
+    const newSpeed = parseInt(event.target.value);
+    this.setState(prevState => {
+      const updatedSpeed = prevState.speeds[index];
+      updatedSpeed.value = newSpeed;
+      return {
+        speeds: [
+          ...prevState.speeds.slice(0, index),
+          updatedSpeed,
+          ...prevState.speeds.slice(index + 1)
+        ]
+      };
+    });
+  }
+
+  handleSpeedDescriptionChanged(event, index) {
+    const newDesc = event.target.value;
+    this.setState(prevState => {
+      const updatedSpeed = prevState.speeds[index];
+      updatedSpeed.description = newDesc;
+      return {
+        speeds: [
+          ...prevState.speeds.slice(0, index),
+          updatedSpeed,
+          ...prevState.speeds.slice(index + 1)
+        ]
+      };
+    });
+  }
+
   renderDisplay() {
     const acDetails = this.props.stdAttributes.ac + (this.props.stdAttributes.acDescription ? ' (' + this.props.stdAttributes.acDescription + ')' : '');
     const hpDetails = this.props.stdAttributes.hp + (this.props.stdAttributes.hpDescription ? ' (' + this.props.stdAttributes.hpDescription + ')' : '');
@@ -67,10 +109,26 @@ export default class StandardAttributesSection extends React.Component {
 
   renderSpeedEdits() {
     const speeds = this.state.speeds.map((eachSpeed, i) => {
+      let deleteButton;
+      if (i > 0) {
+        deleteButton = (<button className="minorAction" onClick={() => this.handleDeleteSpeedClick(i)}>- Remove Speed</button>);
+      }
       return (
         <li key={i}>
-          <input type="text" className="speedValueInput smallValueInput" defaultValue={eachSpeed.value}/>
-          (<input type="text" className="speedDescInput" placeholder="Optional: Type" defaultValue={eachSpeed.description}/>)
+          <input
+            type="text"
+            className="speedValueInput smallValueInput"
+            onChange={evt => this.handleSpeedValueChanged(evt, i)}
+            defaultValue={eachSpeed.value}
+          />
+          (<input
+            type="text"
+            className="speedDescInput"
+            placeholder="Optional: Type"
+            onChange={evt => this.handleSpeedDescriptionChanged(evt, i)}
+            defaultValue={eachSpeed.description}
+          />)
+          {deleteButton}
         </li>
       );
     });
@@ -79,7 +137,7 @@ export default class StandardAttributesSection extends React.Component {
         <ul className="speedsList">
           {speeds}
           <li>
-            <button onClick={this.handleAddSpeedClick}>+ Add Speed</button>
+            <button onClick={this.handleAddSpeedClick} className="minorAction">+ Add Speed</button>
           </li>
         </ul>
       </div>
