@@ -86,6 +86,25 @@
   color: #7A200D;
 }
 
+/* DiceValue */
+.diceValue .dieComponent .multiplier {
+  width: 40px;
+}
+
+.diceValue .dieComponent:not(:last-child)::after {
+  content: '+';
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.diceValue .rollIcon {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 24px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
 /* Broad classes for multiple components */
 h2 {
   border-bottom: 1px solid #7A200D;
@@ -171,7 +190,11 @@ div.creatureProperty .propName {
   font-family: sans-serif;
 }
 
-input[type=text], select {
+.spaceLeft {
+  margin-left: 5px;
+}
+
+input[type=text], input[type=number], select {
   background-color: transparent;
   border: 1px dashed #d2a659;
 }

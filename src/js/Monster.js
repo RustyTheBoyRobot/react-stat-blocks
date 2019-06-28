@@ -11,7 +11,10 @@ export const EXAMPLE_MONSTER = {
     ac: 18,
     acDescription: 'natural armor',
     hp: 33,
-    hpDescription: '6d8 + 6',
+    hpDice: [
+      {multiplier: 6, d: 8},
+      {multiplier: 6, d: 1}
+    ],
     speeds: [
       {value: 25, description: ''}
     ]

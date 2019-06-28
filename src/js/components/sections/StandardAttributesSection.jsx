@@ -1,5 +1,6 @@
 import React from 'react';
 import CreatureProperty from '../CreatureProperty.jsx'
+import DiceValue from '../DiceValue.jsx'
 
 export default class StandardAttributesSection extends React.Component {
   constructor(props) {
@@ -94,14 +95,26 @@ export default class StandardAttributesSection extends React.Component {
 
   renderDisplay() {
     const acDetails = this.props.stdAttributes.ac + (this.props.stdAttributes.acDescription ? ' (' + this.props.stdAttributes.acDescription + ')' : '');
-    const hpDetails = this.props.stdAttributes.hp + (this.props.stdAttributes.hpDescription ? ' (' + this.props.stdAttributes.hpDescription + ')' : '');
+    let hpDiceText = null;
+    if (this.props.stdAttributes.hpDice) {
+      hpDiceText = (
+        <span className="spaceLeft">
+          (
+          <DiceValue components={this.props.stdAttributes.hpDice} />
+          )
+        </span>
+      );
+    }
     const speedDetails = this.props.stdAttributes.speeds.map(function(eachSpeed) {
       return eachSpeed.value + 'ft' + (eachSpeed.description ? ' (' + eachSpeed.description + ')' : '');
     }).join(', ');
     return (
       <section className="standardAttributesSection editable" onClick={this.handleEditClick}>
         <CreatureProperty name='Armor Class' details={acDetails} />
-        <CreatureProperty name='Hit Points' details={hpDetails} />
+        <CreatureProperty name='Hit Points'>
+          {this.props.stdAttributes.hp}
+          {hpDiceText}
+        </CreatureProperty>
         <CreatureProperty name='Speed' details={speedDetails} />
       </section>
     );
@@ -155,7 +168,8 @@ export default class StandardAttributesSection extends React.Component {
         <div className="creatureProperty">
           <span className="majorTerm">Hit Points</span>
           <input type="text" className="smallValueInput" ref="hpValue" defaultValue={this.props.stdAttributes.hp}/>
-          ()
+          <br/>
+          <DiceValue components={this.props.stdAttributes.hpDice} editing={this.state.editing} />
         </div>
         <div className="creatureProperty">
           <span className="majorTerm">Speed(s)</span>

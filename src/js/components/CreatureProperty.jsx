@@ -5,7 +5,7 @@ export default class CreatureProperty extends React.Component {
     return (
       <div className='creatureProperty'>
         <span className='propName majorTerm'>{this.props.name}</span>
-        <span className='propDetails highlightedText'>{this.props.details}</span>
+        <span className='propDetails highlightedText'>{this.props.details || this.props.children}</span>
       </div>
     );
   }
