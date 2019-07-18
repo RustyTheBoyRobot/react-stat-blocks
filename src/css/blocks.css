@@ -199,6 +199,11 @@ div.creatureProperty .propName {
   margin-left: 5px;
 }
 
+input[type=number] {
+  /* Allows for 2 digits as a default */
+  width: 2.5em;
+}
+
 input[type=text], input[type=number], select {
   background-color: transparent;
   border: 1px dashed #d2a659;

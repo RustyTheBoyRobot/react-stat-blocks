@@ -20,6 +20,7 @@ export default class StatBlockView extends React.Component {
     this.updateData = this.updateData.bind(this);
     this.updateNameData = this.updateNameData.bind(this);
     this.updateStandardAttributes = this.updateStandardAttributes.bind(this);
+    this.updateStats = this.updateStats.bind(this);
   }
 
   updateData(section, newData) {
@@ -58,7 +59,7 @@ export default class StatBlockView extends React.Component {
           <StandardAttributesSection stdAttributes={this.state.stdAttributes} update={this.updateStandardAttributes} />
           <MajorDivider />
 
-          <BaseStatsSection stats={this.state.stats}/>
+          <BaseStatsSection stats={this.state.stats} update={this.updateStats}/>
           <MajorDivider />
 
           <SpecialAttributesSection attributes={this.state.specialAttributes} />

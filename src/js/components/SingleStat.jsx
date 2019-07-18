@@ -4,28 +4,59 @@ export default class SingleStat extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      statValue: this.props.value,
-      modifier: this.calculateModifier(this.props.value)
-    }
+    this.handleStatValueChanged = this.handleStatValueChanged.bind(this);
   }
 
   calculateModifier(statValue) {
     return Math.floor(statValue / 2) - 5;
   }
 
+  handleStatValueChanged(event) {
+    this.props.onChange(parseInt(event.target.value));
+  }
+
+  renderModifier() {
+    const modifier = this.calculateModifier(this.props.value);
+    return (
+      <span>
+        <span className='modSign'>{modifier < 0 ? '' : '+'}</span>
+        <span className='modValue'>{modifier}</span>
+      </span>
+    );
+  }
+
+  renderDisplayValues() {
+    return (
+      <div className='highlightedText'>
+        <span className='statValue'>{this.props.value}</span>
+        (
+          {this.renderModifier()}
+        )
+      </div>
+    );
+  }
+
+  renderEditableValues() {
+    return (
+      <div>
+        <input type="number" max="30" min="1" value={this.props.value} onChange={this.handleStatValueChanged}/>
+        <br/>
+        {this.renderModifier()}
+      </div>
+    );
+  }
+
   render() {
+    let display;
+    if (this.props.editing) {
+      display = this.renderEditableValues();
+    } else {
+      display = this.renderDisplayValues();
+    }
     return (
       <div className='indivStat'>
         <div className='statName majorTerm'>{this.props.name}</div>
-        <div className='highlightedText'>
-          <span className='statValue'>{this.state.statValue}</span>
-
-          (
-            <span className='modSign'>{this.state.modifier < 0 ? '' : '+'}</span>
-            <span className='modValue'>{this.state.modifier}</span>
-          )
-        </div>
+        {display}
       </div>
     );
   }
