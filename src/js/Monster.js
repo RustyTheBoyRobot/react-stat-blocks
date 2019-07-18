@@ -1,6 +1,7 @@
 import {CATEGORY_CHOICES} from './CategoryChoiceConstants';
 
 export const EXAMPLE_MONSTER = {
+  version: '1.0.0',
   nameData: {
     name: 'Animated Armor',
     size: CATEGORY_CHOICES.sizes[4],

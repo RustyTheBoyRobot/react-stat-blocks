@@ -6,7 +6,8 @@ export default class DiceValue extends React.Component {
 
     /*
     props = {
-      onRoll: function that accepts a value and components
+      onRoll: function that accepts a value and roll results
+      onComponentsChanged: function that reports changes to the dice components/values to encapsulating components
     }
     */
     const compos = this.props.components || [{multiplier: 1, d: 6}];
@@ -18,8 +19,11 @@ export default class DiceValue extends React.Component {
     };
   }
 
-  // TODO: When there is no d1 component, render a new d1 component
-  // TODO: Update function for parent
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.components !== prevState.components && this.props.onComponentsChanged) {
+      this.props.onComponentsChanged(this.state.components);
+    }
+  }
 
   rollDie(dieSides) {
     return 1 + Math.floor(Math.random() * (dieSides - 1));
@@ -29,7 +33,7 @@ export default class DiceValue extends React.Component {
     if (comp.d === 1) {
       return {
         value: comp.multiplier,
-        text: ''
+        text: comp.multiplier
       };
     }
 
@@ -59,10 +63,48 @@ export default class DiceValue extends React.Component {
     this.state.lastRolledText = rollText
 
     if (this.props.onRoll) {
-      this.props.onRoll(rollResult, this.state.components);
-    } else {
-      alert(`You rolled ${rollResult} (die values: ${rollText})`);
+      this.props.onRoll(rollResult, rollText);
     }
+  }
+
+  handleMultiplierChanged(event, componentIndex) {
+    const updatedMultiplier = parseInt(event.target.value);
+    this.setState(prevState => {
+      return {
+        components: [
+          ...prevState.components.slice(0, componentIndex),
+          {
+            ...prevState.components[componentIndex],
+            multiplier: updatedMultiplier
+          },
+          ...prevState.components.slice(componentIndex + 1)
+        ]
+      };
+    });
+  }
+
+  handleDieChanged(event, componentIndex) {
+    const updatedSides = parseInt(event.target.value);
+    this.setState(prevState => {
+      const updatedComponents = [
+        ...prevState.components.slice(0, componentIndex),
+        {
+          ...prevState.components[componentIndex],
+          d: updatedSides
+        },
+        ...prevState.components.slice(componentIndex + 1)
+      ];
+      if (!this.hasD1Component(updatedComponents)) {
+        updatedComponents.push({multiplier: 0, d: 1});
+      }
+      return {
+        components: updatedComponents
+      };
+    });
+  }
+
+  hasD1Component(components) {
+    return components.filter(comp => comp.d === 1).length > 0;
   }
 
   renderDisplay() {
@@ -78,10 +120,10 @@ export default class DiceValue extends React.Component {
 
   renderSingleDieInput(die, index) {
     return (
-      <span className="dieComponent">
-        <input className="multiplier" type="number" defaultValue={die.multiplier} />
-        <select className="sides" defaultValue={die.d}>
-          <option value="1">(raw value)</option>
+      <span className="dieComponent" key={index}>
+        <input className="multiplier" type="number" defaultValue={die.multiplier} onChange={(evt) => this.handleMultiplierChanged(evt, index)}/>
+        <select className="sides" defaultValue={die.d} onChange={(evt) => this.handleDieChanged(evt, index)}>
+          <option value="1"> </option>
           <option value="4">d4</option>
           <option value="6">d6</option>
           <option value="8">d8</option>

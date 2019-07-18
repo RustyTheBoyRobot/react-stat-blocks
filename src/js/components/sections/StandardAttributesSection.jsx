@@ -8,11 +8,15 @@ export default class StandardAttributesSection extends React.Component {
 
     this.state = {
       ...this.props.stdAttributes,
+      hpLastRollDetails: "",
       editing: false,
     };
 
     // Fix 'this' handling
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleHpDiceChanged = this.handleHpDiceChanged.bind(this);
+    this.handleHpRolled = this.handleHpRolled.bind(this);
+    this.handleHpManuallyChanged = this.handleHpManuallyChanged.bind(this);
     this.handleAddSpeedClick = this.handleAddSpeedClick.bind(this);
     this.handleDeleteSpeedClick = this.handleDeleteSpeedClick.bind(this);
     this.handleCancelClicked = this.handleCancelClicked.bind(this);
@@ -21,6 +25,25 @@ export default class StandardAttributesSection extends React.Component {
 
   handleEditClick() {
     this.setState({editing: true});
+  }
+
+  handleHpDiceChanged(newComponents) {
+    this.setState({
+      hpDice: newComponents
+    });
+  }
+
+  handleHpRolled(total, resultsText) {
+    this.setState({
+      hp: total,
+      hpLastRollDetails: resultsText
+    });
+  }
+
+  handleHpManuallyChanged(event) {
+    this.setState({
+      hp: parseInt(event.target.value)
+    });
   }
 
   handleAddSpeedClick() {
@@ -42,24 +65,6 @@ export default class StandardAttributesSection extends React.Component {
           ...prevState.speeds.slice(speedIndex + 1)
         ]
       };
-    });
-  }
-
-  handleCancelClicked() {
-    this.setState({
-      ...this.props.stdAttributes,
-      editing: false
-    });
-  }
-
-  handleSaveClicked() {
-    this.setState({editing: false});
-
-    this.props.update({
-      ac: parseInt(this.refs.armorValue.value),
-      acDescription: this.refs.armorDescription.value,
-      hp: parseInt(this.refs.hpValue.value),
-      speeds: this.state.speeds,
     });
   }
 
@@ -93,6 +98,31 @@ export default class StandardAttributesSection extends React.Component {
     });
   }
 
+  handleCancelClicked() {
+    this.setState({
+      ...this.props.stdAttributes,
+      editing: false
+    });
+  }
+
+  handleSaveClicked() {
+    this.setState({editing: false});
+
+    const organizedDice = this.state.hpDice
+        // Remove extra entries
+        .filter(eachDie => eachDie.multiplier !== 0)
+        // Sort from highest sides to lowest
+        .sort((a, b) => b.d - a.d);
+
+    this.props.update({
+      ac: parseInt(this.refs.armorValue.value),
+      acDescription: this.refs.armorDescription.value,
+      hp: parseInt(this.refs.hpValue.value),
+      hpDice: organizedDice,
+      speeds: this.state.speeds,
+    });
+  }
+
   renderDisplay() {
     const acDetails = this.props.stdAttributes.ac + (this.props.stdAttributes.acDescription ? ' (' + this.props.stdAttributes.acDescription + ')' : '');
     let hpDiceText = null;
@@ -100,7 +130,7 @@ export default class StandardAttributesSection extends React.Component {
       hpDiceText = (
         <span className="spaceLeft">
           (
-          <DiceValue components={this.props.stdAttributes.hpDice} />
+          <DiceValue components={this.props.stdAttributes.hpDice}/>
           )
         </span>
       );
@@ -167,9 +197,21 @@ export default class StandardAttributesSection extends React.Component {
         </div>
         <div className="creatureProperty">
           <span className="majorTerm">Hit Points</span>
-          <input type="text" className="smallValueInput" ref="hpValue" defaultValue={this.props.stdAttributes.hp}/>
+          <input
+            type="text"
+            className="smallValueInput"
+            title={this.state.hpLastRollDetails}
+            ref="hpValue"
+            value={this.state.hp}
+            onChange={this.handleHpManuallyChanged}
+          />
           <br/>
-          <DiceValue components={this.props.stdAttributes.hpDice} editing={this.state.editing} />
+          <DiceValue
+            components={this.props.stdAttributes.hpDice}
+            editing={this.state.editing}
+            onRoll={this.handleHpRolled}
+            onComponentsChanged={this.handleHpDiceChanged}
+          />
         </div>
         <div className="creatureProperty">
           <span className="majorTerm">Speed(s)</span>
