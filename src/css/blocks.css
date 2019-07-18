@@ -125,6 +125,10 @@ section.editable:hover {
   text-align: right;
 }
 
+button {
+  cursor: pointer;
+}
+
 button.finalize {
   border: 1px solid #d2a659;
   background: transparent;
