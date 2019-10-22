@@ -194,6 +194,12 @@ div.creatureProperty .propName {
   font-size: 15px;
   font-family: sans-serif;
 }
+textarea.abilityDescription {
+  width: 90%;
+  background-color: transparent;
+  border: 1px dashed #d2a659;
+  border-top:none;
+}
 
 .spaceLeft {
   margin-left: 5px;
