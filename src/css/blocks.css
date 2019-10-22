@@ -133,6 +133,12 @@ section.editable:hover {
   text-align: right;
 }
 
+hr {
+  border-color: #d2a659;
+  border-style: solid;
+  border-bottom: none;
+}
+
 button {
   cursor: pointer;
 }
@@ -152,7 +158,7 @@ button.finalize:hover {
 button.minorAction {
   border: none;
   background: transparent;
-  color: #d2a659;
+  color: #d2a659; /* Is this better? #9f7a38 */
 }
 
 button.revert {
@@ -206,7 +212,6 @@ textarea.abilityDescription {
   width: 90%;
   background-color: transparent;
   border: 1px dashed #d2a659;
-  border-top:none;
 }
 
 .spaceLeft {

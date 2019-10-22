@@ -3,6 +3,7 @@ import React from 'react';
 import {EXAMPLE_MONSTER} from '../Monster';
 
 import BaseStatsSection from './sections/BaseStatsSection.jsx';
+import AbilitiesSection from './sections/AbilitiesSection.jsx'
 import DetailsSection from './sections/DetailsSection.jsx';
 import MajorDivider from './sections/MajorDivider.jsx';
 import NameSection from './sections/NameSection.jsx';
@@ -52,6 +53,7 @@ export default class StatBlockView extends React.Component {
     return (
       <div className='fullStatBlock'>
         <div className='boundingBar'/>
+        {/* TODO: make this bounding bar clickable to allow users to select pre-set creatures...? */}
         <div className="statBlockBody">
           <NameSection nameData={this.state.nameData} update={this.updateNameData} />
           <MajorDivider />
@@ -65,10 +67,11 @@ export default class StatBlockView extends React.Component {
           <SpecialAttributesSection attributes={this.state.specialAttributes} />
           <MajorDivider />
 
-          <DetailsSection abilities={this.state.abilities} actions={this.state.actions}>
-          </DetailsSection>
+          <AbilitiesSection abilities={this.state.abilities}/>
+          <DetailsSection abilities={this.state.abilities} actions={this.state.actions} />
         </div>
         <div className='boundingBar'/>
+        {/* TODO: make this bounding bar clickable to customize which sections show up */}
       </div>
     );
   }
