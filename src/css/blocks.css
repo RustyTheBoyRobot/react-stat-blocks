@@ -3,6 +3,14 @@
   text-align: center;
 }
 
+#library {
+  display: flex;
+}
+
+.libraryItem {
+  padding: 25px;
+}
+
 .fullStatBlock {
   width: 440px;
   box-shadow:  0 20px  15px #888888;
