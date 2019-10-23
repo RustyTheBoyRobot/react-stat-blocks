@@ -66,12 +66,9 @@ export default class AbilitiesSection extends React.Component {
   }
 
   handleSaveClicked() {
-    console.debug('handleSaveClicked is not fully implemented');
-    this.handleCancelClicked();
+    this.setState({editing: false});
 
-    // this.props.update({
-    //   ...this.state.stats
-    // });
+    this.props.update(this.state.abilities);
   }
 
   handleCancelClicked() {
@@ -99,9 +96,8 @@ export default class AbilitiesSection extends React.Component {
     const abilityList = this.state.abilities.map(
       (each, i) => {
         return (
-          <div>
+          <div key={i}>
             <CreatureAbility 
-              key={i} 
               name={each.name} 
               description={each.description} 
               isEditing={true}

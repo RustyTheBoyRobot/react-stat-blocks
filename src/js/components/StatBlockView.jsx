@@ -19,9 +19,11 @@ export default class StatBlockView extends React.Component {
 
     // Fix 'this' handling
     this.updateData = this.updateData.bind(this);
+    this.updateArrayData = this.updateArrayData.bind(this);
     this.updateNameData = this.updateNameData.bind(this);
     this.updateStandardAttributes = this.updateStandardAttributes.bind(this);
     this.updateStats = this.updateStats.bind(this);
+    this.updateAbilities = this.updateAbilities.bind(this);
   }
 
   updateData(section, newData) {
@@ -37,6 +39,12 @@ export default class StatBlockView extends React.Component {
     });
   }
 
+  updateArrayData(section, newArray) {
+    this.setState({
+      [section]: newArray
+    });
+  }
+
   updateNameData(newNameData) {
     this.updateData('nameData', newNameData);
   }
@@ -47,6 +55,10 @@ export default class StatBlockView extends React.Component {
 
   updateStats(newStats) {
     this.updateData('stats', newStats);
+  }
+
+  updateAbilities(newAbilities) {
+    this.updateArrayData('abilities', newAbilities);
   }
 
   render() {
@@ -67,7 +79,7 @@ export default class StatBlockView extends React.Component {
           <SpecialAttributesSection attributes={this.state.specialAttributes} />
           <MajorDivider />
 
-          <AbilitiesSection abilities={this.state.abilities}/>
+          <AbilitiesSection abilities={this.state.abilities} update={this.updateAbilities}/>
           <DetailsSection abilities={this.state.abilities} actions={this.state.actions} />
         </div>
         <div className='boundingBar'/>
