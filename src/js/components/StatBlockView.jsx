@@ -4,7 +4,7 @@ import {EXAMPLE_MONSTER} from '../Monster';
 
 import BaseStatsSection from './sections/BaseStatsSection.jsx';
 import AbilitiesSection from './sections/AbilitiesSection.jsx'
-import DetailsSection from './sections/DetailsSection.jsx';
+import ActionsSection from './sections/ActionsSection.jsx';
 import MajorDivider from './sections/MajorDivider.jsx';
 import NameSection from './sections/NameSection.jsx';
 import SpecialAttributesSection from './sections/SpecialAttributesSection.jsx';
@@ -24,6 +24,7 @@ export default class StatBlockView extends React.Component {
     this.updateStandardAttributes = this.updateStandardAttributes.bind(this);
     this.updateStats = this.updateStats.bind(this);
     this.updateAbilities = this.updateAbilities.bind(this);
+    this.updateActions = this.updateActions.bind(this);
   }
 
   updateData(section, newData) {
@@ -61,6 +62,10 @@ export default class StatBlockView extends React.Component {
     this.updateArrayData('abilities', newAbilities);
   }
 
+  updateActions(newActions) {
+    this.updateArrayData('actions', newActions);
+  }
+
   render() {
     return (
       <div className='fullStatBlock'>
@@ -80,7 +85,7 @@ export default class StatBlockView extends React.Component {
           <MajorDivider />
 
           <AbilitiesSection abilities={this.state.abilities} update={this.updateAbilities}/>
-          <DetailsSection abilities={this.state.abilities} actions={this.state.actions} />
+          <ActionsSection actions={this.state.actions} update={this.updateActions}/>
         </div>
         <div className='boundingBar'/>
         {/* TODO: make this bounding bar clickable to customize which sections show up */}
