@@ -124,7 +124,7 @@ export default class StandardAttributesSection extends React.Component {
   }
 
   renderDisplay() {
-    const acDetails = this.props.stdAttributes.ac + (this.props.stdAttributes.acDescription ? ' (' + this.props.stdAttributes.acDescription + ')' : '');
+    const acDescription = this.props.stdAttributes.ac + (this.props.stdAttributes.acDescription ? ' (' + this.props.stdAttributes.acDescription + ')' : '');
     let hpDiceText = null;
     if (this.props.stdAttributes.hpDice) {
       hpDiceText = (
@@ -135,17 +135,17 @@ export default class StandardAttributesSection extends React.Component {
         </span>
       );
     }
-    const speedDetails = this.props.stdAttributes.speeds.map(function(eachSpeed) {
+    const speedDescription = this.props.stdAttributes.speeds.map(function(eachSpeed) {
       return eachSpeed.value + 'ft' + (eachSpeed.description ? ' (' + eachSpeed.description + ')' : '');
     }).join(', ');
     return (
       <section className="standardAttributesSection editable" onClick={this.handleEditClick}>
-        <CreatureProperty name='Armor Class' details={acDetails} />
+        <CreatureProperty name='Armor Class' description={acDescription} />
         <CreatureProperty name='Hit Points'>
           {this.props.stdAttributes.hp}
           {hpDiceText}
         </CreatureProperty>
-        <CreatureProperty name='Speed' details={speedDetails} />
+        <CreatureProperty name='Speed' description={speedDescription} />
       </section>
     );
   }

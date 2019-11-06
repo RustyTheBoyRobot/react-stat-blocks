@@ -1,6 +1,6 @@
-import {CATEGORY_CHOICES} from './CategoryChoiceConstants';
+import {CATEGORY_CHOICES} from '../CategoryChoiceConstants';
 
-export const EXAMPLE_MONSTER = {
+export const ANIMATED_ARMOR = {
   version: '1.0.0',
   nameData: {
     name: 'Animated Armor',

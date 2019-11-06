@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {EXAMPLE_MONSTER} from '../Monster';
+import {ANIMATED_ARMOR} from '../monsterData/AnimatedArmor';
 
 import BaseStatsSection from './sections/BaseStatsSection.jsx';
 import AbilitiesSection from './sections/AbilitiesSection.jsx'
@@ -14,7 +14,7 @@ export default class StatBlockView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...EXAMPLE_MONSTER,
+      ...ANIMATED_ARMOR,
     };
 
     // Fix 'this' handling
@@ -23,6 +23,7 @@ export default class StatBlockView extends React.Component {
     this.updateNameData = this.updateNameData.bind(this);
     this.updateStandardAttributes = this.updateStandardAttributes.bind(this);
     this.updateStats = this.updateStats.bind(this);
+    this.updateAttributes = this.updateAttributes.bind(this);
     this.updateAbilities = this.updateAbilities.bind(this);
     this.updateActions = this.updateActions.bind(this);
   }
@@ -58,6 +59,10 @@ export default class StatBlockView extends React.Component {
     this.updateData('stats', newStats);
   }
 
+  updateAttributes(newAttributes) {
+    this.updateArrayData('specialAttributes', newAttributes);
+  }
+
   updateAbilities(newAbilities) {
     this.updateArrayData('abilities', newAbilities);
   }
@@ -81,7 +86,7 @@ export default class StatBlockView extends React.Component {
           <BaseStatsSection stats={this.state.stats} update={this.updateStats}/>
           <MajorDivider />
 
-          <SpecialAttributesSection attributes={this.state.specialAttributes} />
+          <SpecialAttributesSection attributes={this.state.specialAttributes} update={this.updateAttributes} />
           <MajorDivider />
 
           <AbilitiesSection abilities={this.state.abilities} update={this.updateAbilities}/>
@@ -89,6 +94,18 @@ export default class StatBlockView extends React.Component {
         </div>
         <div className='boundingBar'/>
         {/* TODO: make this bounding bar clickable to customize which sections show up */}
+
+        <datalist id="propertyChoices">
+          <option>Saving Throws</option>
+          <option>Skills</option>
+          <option>Damage Vulnerabilities</option>
+          <option>Damage Resistances</option>
+          <option>Damage Immunities</option>
+          <option>Condition Immunities</option>
+          <option>Senses</option>
+          <option>Languages</option>
+          <option>Challenge</option>
+        </datalist>
       </div>
     );
   }
