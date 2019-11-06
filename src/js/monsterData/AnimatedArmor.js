@@ -6,7 +6,7 @@ export const ANIMATED_ARMOR = {
     name: 'Animated Armor',
     size: CATEGORY_CHOICES.sizes[4],
     type: CATEGORY_CHOICES.types[3],
-    alignment: 'unaligned'
+    alignment: CATEGORY_CHOICES.alignments[9]
   },
   stdAttributes: {
     ac: 18,

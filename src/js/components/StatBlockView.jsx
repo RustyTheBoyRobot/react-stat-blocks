@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {ANIMATED_ARMOR} from '../monsterData/AnimatedArmor';
-
 import BaseStatsSection from './sections/BaseStatsSection.jsx';
 import AbilitiesSection from './sections/AbilitiesSection.jsx'
 import ActionsSection from './sections/ActionsSection.jsx';
@@ -14,7 +12,7 @@ export default class StatBlockView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...ANIMATED_ARMOR,
+      ...this.props.data,
     };
 
     // Fix 'this' handling
@@ -94,18 +92,6 @@ export default class StatBlockView extends React.Component {
         </div>
         <div className='boundingBar'/>
         {/* TODO: make this bounding bar clickable to customize which sections show up */}
-
-        <datalist id="propertyChoices">
-          <option>Saving Throws</option>
-          <option>Skills</option>
-          <option>Damage Vulnerabilities</option>
-          <option>Damage Resistances</option>
-          <option>Damage Immunities</option>
-          <option>Condition Immunities</option>
-          <option>Senses</option>
-          <option>Languages</option>
-          <option>Challenge</option>
-        </datalist>
       </div>
     );
   }
