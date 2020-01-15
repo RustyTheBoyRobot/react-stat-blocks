@@ -1,3 +1,13 @@
+/* Fonts */
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('https://fonts.gstatic.com/s/librebaskerville/v6/kmKiZrc3Hgbbcjq75U4uslyuy4kn0qviTgY3KcA.woff2');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('https://fonts.gstatic.com/s/notosans/v8/o-0OIpQlx3QUlC5A4PNr4ARCQ_k.woff2');
+}
+
 /* Specific, structural parts of the doc */
 #pageTitle {
   text-align: center;
@@ -27,7 +37,7 @@
 }
 
 .nameSection > .monsterName {
-  font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+  font-family: 'Libre Baskerville', serif;
   color: #7A200D;
   font-weight: 700;
   font-size: 23px;
@@ -36,9 +46,8 @@
 }
 
 .nameSection > .overviewDetails {
-  font-style: italic;
   font-size: 12px;
-  font-family: sans-serif;
+  font-family: 'Noto Sans';
 }
 
 .nameSection .alignmentTable {

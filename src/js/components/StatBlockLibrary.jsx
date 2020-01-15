@@ -11,8 +11,8 @@ export default class StatBlockLibrary extends React.Component {
       ANIMATED_ARMOR,
       COUATL
     ];
-    const creatureBlocks = creatures.map((each) => (
-        <div className='libraryItem'>
+    const creatureBlocks = creatures.map((each, i) => (
+        <div className='libraryItem' key={i}>
           <StatBlockView data={each}/>
         </div>
     ));
