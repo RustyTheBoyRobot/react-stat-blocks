@@ -10,17 +10,9 @@ export default class AbilitiesSection extends React.Component {
       abilities: this.props.abilities,
       editing: false
     };
-
-    // Fix 'this' handling
-    this.handleEditClicked = this.handleEditClicked.bind(this);
-    this.handleAbilityChanged = this.handleAbilityChanged.bind(this);
-    this.handleAbilityAdded = this.handleAbilityAdded.bind(this);
-    this.handleAbilityRemoved = this.handleAbilityRemoved.bind(this);
-    this.handleSaveClicked = this.handleSaveClicked.bind(this);
-    this.handleCancelClicked = this.handleCancelClicked.bind(this);
   }
 
-  handleEditClicked() {
+  handleEditClicked = () => {
     if (!this.state.editing) {
       this.setState({
         editing: true
@@ -28,7 +20,7 @@ export default class AbilitiesSection extends React.Component {
     }
   }
 
-  handleAbilityChanged(index, field, value) {
+  handleAbilityChanged = (index, field, value) => {
     this.setState(prevState => {
       return {
         abilities: [
@@ -43,7 +35,7 @@ export default class AbilitiesSection extends React.Component {
     });
   }
 
-  handleAbilityRemoved(index) {
+  handleAbilityRemoved = (index) => {
     this.setState(prevState => {
       return {
         abilities: [
@@ -54,7 +46,7 @@ export default class AbilitiesSection extends React.Component {
     });
   }
 
-  handleAbilityAdded() {
+  handleAbilityAdded = () => {
     this.setState(prevState => {
       return {
         abilities: [
@@ -65,13 +57,13 @@ export default class AbilitiesSection extends React.Component {
     });
   }
 
-  handleSaveClicked() {
+  handleSaveClicked = () => {
     this.setState({editing: false});
 
     this.props.update(this.state.abilities);
   }
 
-  handleCancelClicked() {
+  handleCancelClicked = () => {
     this.setState({
       abilities: this.props.abilities,
       editing: false

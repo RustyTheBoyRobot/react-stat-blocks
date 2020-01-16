@@ -3,15 +3,13 @@ import React from 'react';
 export default class SingleStat extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleStatValueChanged = this.handleStatValueChanged.bind(this);
   }
 
   calculateModifier(statValue) {
     return Math.floor(statValue / 2) - 5;
   }
 
-  handleStatValueChanged(event) {
+  handleStatValueChanged = (event) => {
     this.props.onChange(parseInt(event.target.value));
   }
 

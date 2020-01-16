@@ -9,17 +9,9 @@ export default class ActionsSection extends React.Component {
       actions: this.props.actions,
       editing: false
     };
-
-    // Fix 'this' handling
-    this.handleEditClicked = this.handleEditClicked.bind(this);
-    this.handleActionChanged = this.handleActionChanged.bind(this);
-    this.handleActionAdded = this.handleActionAdded.bind(this);
-    this.handleActionRemoved = this.handleActionRemoved.bind(this);
-    this.handleSaveClicked = this.handleSaveClicked.bind(this);
-    this.handleCancelClicked = this.handleCancelClicked.bind(this);
   }
 
-  handleEditClicked() {
+  handleEditClicked = () => {
     if (!this.state.editing) {
       this.setState({
         editing: true
@@ -27,7 +19,7 @@ export default class ActionsSection extends React.Component {
     }
   }
 
-  handleActionChanged(index, field, value) {
+  handleActionChanged = (index, field, value) => {
     this.setState(prevState => {
       return {
         actions: [
@@ -42,7 +34,7 @@ export default class ActionsSection extends React.Component {
     });
   }
 
-  handleActionRemoved(index) {
+  handleActionRemoved = (index) => {
     this.setState(prevState => {
       return {
         actions: [
@@ -53,7 +45,7 @@ export default class ActionsSection extends React.Component {
     });
   }
 
-  handleActionAdded() {
+  handleActionAdded = () => {
     this.setState(prevState => {
       return {
         actions: [
@@ -64,13 +56,13 @@ export default class ActionsSection extends React.Component {
     });
   }
 
-  handleSaveClicked() {
+  handleSaveClicked = () => {
     this.setState({editing: false});
 
     this.props.update(this.state.actions);
   }
 
-  handleCancelClicked() {
+  handleCancelClicked = () => {
     this.setState({
       actions: this.props.actions,
       editing: false

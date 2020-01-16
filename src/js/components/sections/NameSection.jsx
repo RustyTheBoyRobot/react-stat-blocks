@@ -11,15 +11,9 @@ export default class NameSection extends React.Component {
       editing: false,
       alignment: this.props.nameData.alignment
     };
-
-    // Fix 'this' handling
-    this.save = this.save.bind(this);
-    this.cancelEdit = this.cancelEdit.bind(this);
-    this.selectAlignment = this.selectAlignment.bind(this);
-    this.handleEditClick = this.handleEditClick.bind(this);
   }
 
-  save() {
+  save = () => {
     this.setState({
       editing: false
     });
@@ -32,21 +26,21 @@ export default class NameSection extends React.Component {
     });
   }
 
-  cancelEdit() {
+  cancelEdit = () => {
     this.setState({
       editing: false,
       alignment: this.props.nameData.alignment
     });
   }
 
-  selectAlignment(event) {
+  selectAlignment = (event) => {
     const newAlignment = event.target.getAttribute("data-alignment");
     this.setState({
       alignment: newAlignment
     });
   }
 
-  handleEditClick() {
+  handleEditClick = () => {
     this.setState({
       editing: true
     });

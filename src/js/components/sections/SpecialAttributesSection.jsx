@@ -9,16 +9,9 @@ export default class SpecialAttributesSection extends React.Component {
       attributes: this.props.attributes,
       editing: false
     }
-  // Fix 'this' handling
-  this.handleEditClicked = this.handleEditClicked.bind(this);
-  this.handleAttributeChanged = this.handleAttributeChanged.bind(this);
-  this.handleAttributeAdded = this.handleAttributeAdded.bind(this);
-  this.handleAttributeRemoved = this.handleAttributeRemoved.bind(this);
-  this.handleSaveClicked = this.handleSaveClicked.bind(this);
-  this.handleCancelClicked = this.handleCancelClicked.bind(this);
 }
 
-handleEditClicked() {
+handleEditClicked = () => {
   if (!this.state.editing) {
     this.setState({
       editing: true
@@ -26,7 +19,7 @@ handleEditClicked() {
   }
 }
 
-handleAttributeChanged(index, field, value) {
+handleAttributeChanged = (index, field, value) => {
   this.setState(prevState => {
     return {
       attributes: [
@@ -41,7 +34,7 @@ handleAttributeChanged(index, field, value) {
   });
 }
 
-handleAttributeRemoved(index) {
+handleAttributeRemoved = (index) => {
   this.setState(prevState => {
     return {
       attributes: [
@@ -52,7 +45,7 @@ handleAttributeRemoved(index) {
   });
 }
 
-handleAttributeAdded() {
+handleAttributeAdded = () => {
   this.setState(prevState => {
     return {
       attributes: [
@@ -63,13 +56,13 @@ handleAttributeAdded() {
   });
 }
 
-handleSaveClicked() {
+handleSaveClicked = () => {
   this.setState({editing: false});
 
   this.props.update(this.state.attributes);
 }
 
-handleCancelClicked() {
+handleCancelClicked = () => {
   this.setState({
     attributes: this.props.attributes,
     editing: false

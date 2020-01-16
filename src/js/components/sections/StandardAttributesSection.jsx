@@ -11,42 +11,32 @@ export default class StandardAttributesSection extends React.Component {
       hpLastRollDetails: "",
       editing: false,
     };
-
-    // Fix 'this' handling
-    this.handleEditClick = this.handleEditClick.bind(this);
-    this.handleHpDiceChanged = this.handleHpDiceChanged.bind(this);
-    this.handleHpRolled = this.handleHpRolled.bind(this);
-    this.handleHpManuallyChanged = this.handleHpManuallyChanged.bind(this);
-    this.handleAddSpeedClick = this.handleAddSpeedClick.bind(this);
-    this.handleDeleteSpeedClick = this.handleDeleteSpeedClick.bind(this);
-    this.handleCancelClicked = this.handleCancelClicked.bind(this);
-    this.handleSaveClicked = this.handleSaveClicked.bind(this);
   }
 
-  handleEditClick() {
+  handleEditClick = () => {
     this.setState({editing: true});
   }
 
-  handleHpDiceChanged(newComponents) {
+  handleHpDiceChanged = (newComponents) => {
     this.setState({
       hpDice: newComponents
     });
   }
 
-  handleHpRolled(total, resultsText) {
+  handleHpRolled = (total, resultsText) => {
     this.setState({
       hp: total,
       hpLastRollDetails: resultsText
     });
   }
 
-  handleHpManuallyChanged(event) {
+  handleHpManuallyChanged = (event) => {
     this.setState({
       hp: parseInt(event.target.value)
     });
   }
 
-  handleAddSpeedClick() {
+  handleAddSpeedClick = () => {
     this.setState(prevState => {
       return {
         speeds: [
@@ -57,7 +47,7 @@ export default class StandardAttributesSection extends React.Component {
     });
   }
 
-  handleDeleteSpeedClick(speedIndex) {
+  handleDeleteSpeedClick = (speedIndex) => {
     this.setState(prevState => {
       return {
         speeds: [
@@ -68,7 +58,7 @@ export default class StandardAttributesSection extends React.Component {
     });
   }
 
-  handleSpeedValueChanged(event, index) {
+  handleSpeedValueChanged = (event, index) => {
     const newSpeed = parseInt(event.target.value);
     this.setState(prevState => {
       const updatedSpeed = prevState.speeds[index];
@@ -83,7 +73,7 @@ export default class StandardAttributesSection extends React.Component {
     });
   }
 
-  handleSpeedDescriptionChanged(event, index) {
+  handleSpeedDescriptionChanged = (event, index) => {
     const newDesc = event.target.value;
     this.setState(prevState => {
       const updatedSpeed = prevState.speeds[index];
@@ -98,14 +88,14 @@ export default class StandardAttributesSection extends React.Component {
     });
   }
 
-  handleCancelClicked() {
+  handleCancelClicked = () => {
     this.setState({
       ...this.props.stdAttributes,
       editing: false
     });
   }
 
-  handleSaveClicked() {
+  handleSaveClicked = () => {
     this.setState({editing: false});
 
     const organizedDice = this.state.hpDice

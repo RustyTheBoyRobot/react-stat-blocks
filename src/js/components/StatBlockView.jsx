@@ -14,19 +14,9 @@ export default class StatBlockView extends React.Component {
     this.state = {
       ...this.props.data,
     };
-
-    // Fix 'this' handling
-    this.updateData = this.updateData.bind(this);
-    this.updateArrayData = this.updateArrayData.bind(this);
-    this.updateNameData = this.updateNameData.bind(this);
-    this.updateStandardAttributes = this.updateStandardAttributes.bind(this);
-    this.updateStats = this.updateStats.bind(this);
-    this.updateAttributes = this.updateAttributes.bind(this);
-    this.updateAbilities = this.updateAbilities.bind(this);
-    this.updateActions = this.updateActions.bind(this);
   }
 
-  updateData(section, newData) {
+  updateData = (section, newData) => {
     this.setState(prevState => {
       const mergedData = {
         ...prevState[section],
@@ -39,33 +29,33 @@ export default class StatBlockView extends React.Component {
     });
   }
 
-  updateArrayData(section, newArray) {
+  updateArrayData = (section, newArray) => {
     this.setState({
       [section]: newArray
     });
   }
 
-  updateNameData(newNameData) {
+  updateNameData = (newNameData) => {
     this.updateData('nameData', newNameData);
   }
 
-  updateStandardAttributes(newStdAttributes) {
+  updateStandardAttributes = (newStdAttributes) => {
     this.updateData('stdAttributes', newStdAttributes);
   }
 
-  updateStats(newStats) {
+  updateStats = (newStats) => {
     this.updateData('stats', newStats);
   }
 
-  updateAttributes(newAttributes) {
+  updateAttributes = (newAttributes) => {
     this.updateArrayData('specialAttributes', newAttributes);
   }
 
-  updateAbilities(newAbilities) {
+  updateAbilities = (newAbilities) => {
     this.updateArrayData('abilities', newAbilities);
   }
 
-  updateActions(newActions) {
+  updateActions = (newActions) => {
     this.updateArrayData('actions', newActions);
   }
 

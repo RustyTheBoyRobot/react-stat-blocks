@@ -4,21 +4,17 @@ export default class CreatureAbility extends React.Component {
 
   constructor(props) {
     super(props);
-    
-    this.handleValueChanged = this.handleValueChanged.bind(this);
-    this.handleNameChanged = this.handleNameChanged.bind(this);
-    this.handleDescriptionChanged = this.handleDescriptionChanged.bind(this);
   }
 
-  handleValueChanged(key, event) {
+  handleValueChanged = (key, event) => {
     this.props.onChange(key, event.target.value);
   }
 
-  handleNameChanged(event) {
+  handleNameChanged = (event) => {
     this.handleValueChanged('name', event)
   }
 
-  handleDescriptionChanged(event) {
+  handleDescriptionChanged = (event) => {
     this.handleValueChanged('description', event)
   }
 

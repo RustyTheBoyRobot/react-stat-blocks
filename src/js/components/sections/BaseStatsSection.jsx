@@ -10,14 +10,9 @@ export default class BaseStatsSection extends React.Component {
       stats: this.props.stats,
       editing: false
     };
-
-    // Fix 'this' handling
-    this.handleEditClicked = this.handleEditClicked.bind(this);
-    this.handleSaveClicked = this.handleSaveClicked.bind(this);
-    this.handleCancelClicked = this.handleCancelClicked.bind(this);
   }
 
-  handleEditClicked() {
+  handleEditClicked = () => {
     if (!this.state.editing) {
       this.setState({
         editing: true
@@ -25,7 +20,7 @@ export default class BaseStatsSection extends React.Component {
     }
   }
 
-  handleStatValueChanged(key, value) {
+  handleStatValueChanged = (key, value) => {
     this.setState(prevState => {
       return {
         stats: {
@@ -36,7 +31,7 @@ export default class BaseStatsSection extends React.Component {
     });
   }
 
-  handleSaveClicked() {
+  handleSaveClicked = () => {
     this.setState({
       editing: false
     });
@@ -46,7 +41,7 @@ export default class BaseStatsSection extends React.Component {
     });
   }
 
-  handleCancelClicked() {
+  handleCancelClicked = () => {
     this.setState({
       stats: this.props.stats,
       editing: false
