@@ -47,12 +47,7 @@ export default class SingleStat extends React.Component {
   }
 
   render() {
-    let display;
-    if (this.props.editing) {
-      display = this.renderEditableValues();
-    } else {
-      display = this.renderDisplayValues();
-    }
+    const display = this.props.editing ? this.renderEditableValues() : this.renderDisplayValues();
     return (
       <div className='indivStat'>
         <div className='statName majorTerm'>{this.props.name}</div>

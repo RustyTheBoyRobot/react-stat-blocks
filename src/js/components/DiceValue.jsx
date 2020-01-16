@@ -59,8 +59,10 @@ export default class DiceValue extends React.Component {
     const rollResult = allRollResults.map(each => each.value).reduce((a, b) => a + b);
     const rollText = allRollResults.map(each => each.text).filter(each => each !== '').join(' + ');
 
-    this.state.lastRolledValue = rollResult;
-    this.state.lastRolledText = rollText
+    this.setState({
+      lastRolledValue: rollResult,
+      lastRolledText: rollText
+    });
 
     if (this.props.onRoll) {
       this.props.onRoll(rollResult, rollText);
@@ -104,7 +106,7 @@ export default class DiceValue extends React.Component {
   }
 
   hasD1Component(components) {
-    return components.filter(comp => comp.d === 1).length > 0;
+    return components.some(comp => comp.d === 1);
   }
 
   renderDisplay() {
